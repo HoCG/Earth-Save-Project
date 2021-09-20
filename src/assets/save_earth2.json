@@ -2,30 +2,30 @@
     "items": [
         {
             "id": 0,
-            "icon": ["mdi-bottle-soda"],
+            "icon": ["mdi-chart-bubble"],
             "title": "오늘 내가 사용한 샴푸의 양은?",
             "count": 0
         }, {
             "id": 1,
             "icon": [
-                "mdi-cow", "mdi-pig"
+                "mdi-bus"
             ],
-            "title": "오늘 내가 ",
+            "title": "오늘 대중교통을 이용했니?",
             "count": 0
         }, {
             "id": 2,
             "icon": ["mdi-slash-forward"],
-            "title": "오늘 내가 무심코 버린 빨대는?",
+            "title": "오늘 일회용 비닐봉투를 얼마나 사용했어?",
             "count": 0
         }, {
             "id": 3,
-            "icon": ["mdi-motorbike"],
-            "title": "오늘 배달음식을 얼마나 시켜먹었니?",
+            "icon": ["mdi-cup-outline"],
+            "title": "오늘 일회용 컵을 얼마나 사용했니?",
             "count": 0
         }, {
             "id": 4,
-            "icon": ["mdi-air-conditioner"],
-            "title": "오늘 에어컨을 얼마나 틀었어?",
+            "icon": ["mdi-bowl"],
+            "title": "오늘 일회용 용기를 얼마나 사용했니?",
             "count": 0
         }
     ]

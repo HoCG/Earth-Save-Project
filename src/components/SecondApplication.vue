@@ -9,34 +9,32 @@
                             text-xs-center="text-xs-center"
                             justify-center="justify-center">
                             <v-toolbar-title>오늘 너가 지구를 얼마나 지켰는지 확인해봐!</v-toolbar-title>
-                            <v-btn icon="icon">
-                                <v-icon>mdi-magnify</v-icon>
-                            </v-btn>
                         </v-layout>
                     </v-toolbar>
-                    <v-list class="justify-center" three-line="three-line">
-                        <template v-for="(item, index) in items">
-                            <v-list-item class="justify-center" :key="item.title">
-                                <v-list-item-icon v-for="icons in item.icon" :key="icons">
-                                    <v-icon v-text="icons" size="30px"></v-icon>
-                                </v-list-item-icon>
-                                <v-list-item-content>
-                                    <v-list-item-title v-html="item.title"></v-list-item-title>
-                                </v-list-item-content>
+                    <v-list
+                        v-for="(item, index) in items"
+                        :key="item.title"
+                        >
+                        <v-list-item>
+                            <v-list-item-icon v-for="icons in item.icon" :key="icons">
+                                <v-icon v-text="icons" size="30px"></v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-content>
+                                <v-list-item-title v-html="item.title"></v-list-item-title>
+                            </v-list-item-content>
+                            &nbsp;&nbsp;
+                            <v-card-actions>
+                                <v-btn @click="item.count = subCount(item.count)">-</v-btn>
                                 &nbsp;&nbsp;
-                                <v-card-actions>
-                                    <v-btn @click="item.count = subCount(item.count)">-</v-btn>
-                                    &nbsp;&nbsp;
-                                    <!--{{item.count}}-->
-                                    <!--<input v-bind:value="inputText[item.id]" v-on:input="updateInput"
-                                    style="width: 30px">-->
-                                    <v-text-field class="text-field" v-model="item.count"></v-text-field>
-                                    &nbsp;&nbsp;
-                                    <v-btn @click="item.count = plusCount(item.count)">+</v-btn>
-                                </v-card-actions>
-                            </v-list-item>
-                            <v-divider v-if="index < items.length - 1" :key="index"></v-divider>
-                        </template>
+                                <!--{{item.count}}-->
+                                <!--<input v-bind:value="inputText[item.id]" v-on:input="updateInput"
+                                style="width: 30px">-->
+                                <v-text-field class="text-field" v-model="item.count"></v-text-field>
+                                &nbsp;&nbsp;
+                                <v-btn @click="item.count = plusCount(item.count)">+</v-btn>
+                            </v-card-actions>
+                        </v-list-item>
+                        <v-divider v-if="index < items.length - 1" :key="index"></v-divider>
                     </v-list>
                 </v-card>
             </v-card-actions>
@@ -93,6 +91,9 @@
     }
     .Calculator {
         float: left !important;
+        text-align: center !important;
+    }
+    input {
         text-align: center !important;
     }
 </style>

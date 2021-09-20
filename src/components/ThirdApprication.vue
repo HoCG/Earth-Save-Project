@@ -1,33 +1,43 @@
 <template>
     <div class="SecondApplication">
         <v-layout row="row" wrap="wrap" width="100%" justify-center="justify-center">
-            <v-card max-width="70%" class="SecondApplication">
-                <v-toolbar color="primary" dark="dark">
-                    <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
-                    <v-toolbar-title>Inbox</v-toolbar-title>
-
-                    <v-spacer></v-spacer>
-
-                    <v-btn icon="icon">
-                        <v-icon>mdi-magnify</v-icon>
-                    </v-btn>
-                </v-toolbar>
-                <v-list three-line="three-line">
-                    <template v-for="(item, index) in items">
-                        <v-divider v-if="item.divider" :key="index" :inset="item.inset"></v-divider>
-                        <v-list-item v-else :key="item.title">
+            <v-card-actions class="justify-center" max-width="70%">
+                <v-card>
+                    <v-toolbar class="title" color="primary" dark="dark">
+                        <v-layout
+                            width="100%"
+                            text-xs-center="text-xs-center"
+                            justify-center="justify-center">
+                            <v-toolbar-title>오늘 너가 지구를 얼마나 지켰는지 확인해봐!</v-toolbar-title>
+                        </v-layout>
+                    </v-toolbar>
+                    <v-list
+                        v-for="(item, index) in items"
+                        :key="item.title"
+                        >
+                        <v-list-item>
                             <v-list-item-icon v-for="icons in item.icon" :key="icons">
                                 <v-icon v-text="icons" size="30px"></v-icon>
                             </v-list-item-icon>
                             <v-list-item-content>
                                 <v-list-item-title v-html="item.title"></v-list-item-title>
-                                <v-list-item-subtitle v-html="item.subtitle"></v-list-item-subtitle>
                             </v-list-item-content>
+                            &nbsp;&nbsp;
+                            <v-card-actions>
+                                <v-btn @click="item.count = subCount(item.count)">-</v-btn>
+                                &nbsp;&nbsp;
+                                <!--{{item.count}}-->
+                                <!--<input v-bind:value="inputText[item.id]" v-on:input="updateInput"
+                                style="width: 30px">-->
+                                <v-text-field class="text-field" v-model="item.count"></v-text-field>
+                                &nbsp;&nbsp;
+                                <v-btn @click="item.count = plusCount(item.count)">+</v-btn>
+                            </v-card-actions>
                         </v-list-item>
-                    </template>
-                </v-list>
-            </v-card>
+                        <v-divider v-if="index < items.length - 1" :key="index"></v-divider>
+                    </v-list>
+                </v-card>
+            </v-card-actions>
         </v-layout>
         <v-btn width="30%" color="primary">
             <router-link to="/plastic_consume1" class="link">Previous Step</router-link>
@@ -39,56 +49,54 @@
 </template>
 
 <script>
+    import JsonData from "../assets/save_earth2.json"
     export default {
-        data: () => ({
-            items: [
-                {
-                    icon: ['mdi-bottle-soda'],
-                    title: '오늘 내가 버린 플라스틱 병은?',
-                    subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`
-                }, {
-                    divider: true,
-                    inset: true
-                }, {
-                    icon: [
-                        'mdi-cow', 'mdi-pig'
-                    ],
-                    title: '오늘 내가 먹은 고기의 양은?',
-                    subtitle: `<span class="text--primary">to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.`
-                }, {
-                    divider: true,
-                    inset: true
-                }, {
-                    icon: ['./assets/straw.jpg'],
-                    title: '오늘 내가 무심코 버린 빨대는?',
-                    subtitle: '<span class="text--primary">Sandra Adams</span> &mdash; Do you have Paris reco' +
-                            'mmendations? Have you ever been?'
-                }, {
-                    divider: true,
-                    inset: true
-                }, {
-                    icon: ['mdi-star'],
-                    title: 'Birthday gift',
-                    subtitle: '<span class="text--primary">Trevor Hansen</span> &mdash; Have any ideas about ' +
-                            'what we should get Heidi for her birthday?'
-                }, {
-                    divider: true,
-                    inset: true
-                }, {
-                    icon: ['mdi-star'],
-                    title: 'Recipe to try',
-                    subtitle: '<span class="text--primary">Britta Holt</span> &mdash; We should eat this: Gra' +
-                            'te, Squash, Corn, and tomatillo Tacos.'
+        data: () => ({items: JsonData.items, inputText: []}),
+        methods: {
+            subCount(count) {
+                if (count > 0) {
+                    --count;
+                } else {
+                    alert("이런! 0에서 더빼는건 불가능해!");
                 }
-            ]
-        })
+                return count;
+            },
+            plusCount(count) {
+                ++count;
+                return count;
+            }
+        }
     }
 </script>
 
 <style>
+    .title {
+        font-weight: 900 !important;
+        text-align: center !important;
+    }
     .SecondApplication {
+        display: block;
         text-align: center;
         margin-top: 5%;
         margin-bottom: 5%;
+    }
+    .link {
+        width: 100% !important;
+        height: 100% !important;
+        color: black !important;
+        text-decoration: none !important;
+    }
+    i {
+        color: black !important;
+    }
+    .text-field {
+        width: 50px;
+    }
+    .Calculator {
+        float: left !important;
+        text-align: center !important;
+    }
+    input {
+        text-align: center !important;
     }
 </style>

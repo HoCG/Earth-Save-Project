@@ -26,9 +26,6 @@
                             <v-card-actions>
                                 <v-btn @click="item.count = subCount(item.count)">-</v-btn>
                                 &nbsp;&nbsp;
-                                <!--{{item.count}}-->
-                                <!--<input v-bind:value="inputText[item.id]" v-on:input="updateInput"
-                                style="width: 30px">-->
                                 <v-text-field class="text-field" v-model="item.count"></v-text-field>
                                 &nbsp;&nbsp;
                                 <v-btn @click="item.count = plusCount(item.count)">+</v-btn>

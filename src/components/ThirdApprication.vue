@@ -1,5 +1,5 @@
 <template>
-    <div class="SecondApplication">
+    <div class="ThirdApplication">
         <v-layout row="row" wrap="wrap" width="100%" justify-center="justify-center">
             <v-card-actions class="justify-center" max-width="70%">
                 <v-card>
@@ -74,7 +74,7 @@
         font-weight: 900 !important;
         text-align: center !important;
     }
-    .SecondApplication {
+    .ThirdApplication {
         display: block;
         text-align: center;
         margin-top: 5%;

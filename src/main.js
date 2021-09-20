@@ -17,6 +17,9 @@ const routes = [
     }, {
         path: '/plastic_consume2',
         component: () => import ('./components/ThirdApprication.vue')
+    }, {
+        path: '/result',
+        component: () => import ('./components/Result.vue')
     }
 ];
 

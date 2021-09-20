@@ -43,7 +43,7 @@
             <router-link to="/plastic_consume1" class="link">Previous Step</router-link>
         </v-btn>
         <v-btn width="30%" color="primary">
-            <router-link to="/plastic_consume3" class="link">Next Step</router-link>
+            <router-link to="/result" class="link">Next Step</router-link>
         </v-btn>
     </div>
 </template>

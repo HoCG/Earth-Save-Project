@@ -1,0 +1,32 @@
+{
+    "items": [
+        {
+            "id": 0,
+            "icon": ["mdi-bottle-soda"],
+            "title": "오늘 내가 사용한 샴푸의 양은?",
+            "count": 0
+        }, {
+            "id": 1,
+            "icon": [
+                "mdi-cow", "mdi-pig"
+            ],
+            "title": "오늘 내가 ",
+            "count": 0
+        }, {
+            "id": 2,
+            "icon": ["mdi-slash-forward"],
+            "title": "오늘 내가 무심코 버린 빨대는?",
+            "count": 0
+        }, {
+            "id": 3,
+            "icon": ["mdi-motorbike"],
+            "title": "오늘 배달음식을 얼마나 시켜먹었니?",
+            "count": 0
+        }, {
+            "id": 4,
+            "icon": ["mdi-air-conditioner"],
+            "title": "오늘 에어컨을 얼마나 틀었어?",
+            "count": 0
+        }
+    ]
+}

@@ -36,8 +36,8 @@
                 </v-card>
             </v-card-actions>
         </v-layout>
-        <v-btn width="30%" color="primary">
-            <router-link to="/plastic_consume2" class="link">Next Step</router-link>
+        <v-btn class="ForBtnClass" @click="pushData" width="30%" color="primary">
+            Next Step
         </v-btn>
     </div>
 </template>
@@ -58,6 +58,17 @@
             plusCount(count) {
                 ++count;
                 return count;
+            },
+            pushData() {
+                this
+                .$router
+                .push({
+                    path: "/plastic_consume2",
+                    query: {
+                        name: "첫번째 페이지 결과",
+                        items: this.items.map(element => element.count)
+                    }
+                });
             }
         }
     }
@@ -74,9 +85,7 @@
         margin-top: 5%;
         margin-bottom: 5%;
     }
-    .link {
-        width: 100% !important;
-        height: 100% !important;
+    .ForBtnClass {
         color: black !important;
         text-decoration: none !important;
     }

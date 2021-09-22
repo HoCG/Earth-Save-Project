@@ -11,10 +11,7 @@
                             <v-toolbar-title>오늘 너가 지구를 얼마나 지켰는지 확인해봐!</v-toolbar-title>
                         </v-layout>
                     </v-toolbar>
-                    <v-list
-                        v-for="(item, index) in items"
-                        :key="item.title"
-                        >
+                    <v-list v-for="(item, index) in items" :key="item.title">
                         <v-list-item>
                             <v-list-item-icon v-for="icons in item.icon" :key="icons">
                                 <v-icon v-text="icons" size="30px"></v-icon>
@@ -42,8 +39,8 @@
         <v-btn width="30%" color="primary">
             <router-link to="/plastic_consume1" class="link">Previous Step</router-link>
         </v-btn>
-        <v-btn width="30%" color="primary">
-            <router-link to="/result" class="link">Next Step</router-link>
+        <v-btn class="ForBtnClass" @click="pushData" width="30%" color="primary">
+            Next Step
         </v-btn>
     </div>
 </template>
@@ -51,7 +48,13 @@
 <script>
     import JsonData from "../assets/save_earth2.json"
     export default {
-        data: () => ({items: JsonData.items, inputText: []}),
+        data: () => ({Counter: [], items: JsonData.items, inputText: []}),
+        created() {
+            for(let Data of this.$route.query.items){
+                this.Counter.push(parseInt(Data));
+            }
+            console.log(this.Counter);
+        },
         methods: {
             subCount(count) {
                 if (count > 0) {
@@ -64,6 +67,21 @@
             plusCount(count) {
                 ++count;
                 return count;
+            },
+            pushData() {
+                for(let Data of this.items){
+                    this.Counter.push(parseInt(Data.count));
+                }
+                console.log(this.Counter);
+                this
+                .$router
+                .push({
+                    path: "/result",
+                    query: {
+                        name: "두번째 페이지 결과",
+                        items: this.Counter
+                    }
+                });
             }
         }
     }
@@ -80,8 +98,12 @@
         margin-top: 5%;
         margin-bottom: 5%;
     }
+    .ForBtnClass {
+        color: black !important;
+        text-decoration: none !important;
+    }
     .link {
-        width: 100% !important;
+                width: 100% !important;
         height: 100% !important;
         color: black !important;
         text-decoration: none !important;

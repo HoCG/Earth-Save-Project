@@ -15,17 +15,17 @@
         }, {
             "id": 2,
             "icon": ["mdi-slash-forward"],
-            "title": "오늘 일회용 비닐봉투를 얼마나 사용했어?",
+            "title": "오늘 일회용 비닐봉투를 몇번 사용했어?",
             "count": 0
         }, {
             "id": 3,
             "icon": ["mdi-cup-outline"],
-            "title": "오늘 일회용 컵을 얼마나 사용했니?",
+            "title": "오늘 일회용 컵을 몇번 사용했니?",
             "count": 0
         }, {
             "id": 4,
             "icon": ["mdi-bowl"],
-            "title": "오늘 일회용 용기를 얼마나 사용했니?",
+            "title": "오늘 일회용 용기를 몇번 사용했니?",
             "count": 0
         }
     ]

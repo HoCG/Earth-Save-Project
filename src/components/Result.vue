@@ -4,14 +4,14 @@
             <v-card-actions class="justify-center" max-width="100%">
                 <v-card>
                     <v-list>
+                        <p class="image-text">
+                            당신의 결과!
+                        </p>
                         <v-img
                             lazy-src="https://picsum.photos/id/11/10/6"
                             max-width="450"
                             max-height="300"
                             src="https://picsum.photos/id/11/500/300">
-                            <p class="image-text">
-                                당신의 결과!
-                            </p>
                         </v-img>
                         <v-list-item-title v-if="FinalCalculater() === 1" class="text">
                             오늘 당신은 그야말로 지구지킴이! 아주 칭찬해요~

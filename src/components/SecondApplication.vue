@@ -23,7 +23,8 @@
                             <v-card-actions>
                                 <v-btn @click="item.count = subCount(item.count)">-</v-btn>
                                 &nbsp;&nbsp;
-                                <v-text-field class="text-field" v-model="item.count"></v-text-field>
+                                <v-text-field v-if="checkForAirConditioner(item.title)" class="text-field" label="시간" v-model="item.count"></v-text-field>
+                                <v-text-field v-else class="text-field" v-model="item.count"></v-text-field>
                                 &nbsp;&nbsp;
                                 <v-btn @click="item.count = plusCount(item.count)">+</v-btn>
                             </v-card-actions>
@@ -64,6 +65,14 @@
                 let airConditionerCount = this.items.find(item => item.title.includes('에어컨')).count * 2;
                 this.Counter += (bottleCount + meatCount + strawCount + deliveryCount + airConditionerCount);
             },
+            checkForAirConditioner(title){
+                if(title.includes("에어컨")){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            },
             pushData() {
                 this.CalculateData();
                 this
@@ -72,7 +81,8 @@
                         path: "/plastic_consume2",
                         query: {
                             name: "첫번째 페이지 결과",
-                            items: this.Counter
+                            items: this.Counter,
+                            lackItems: ""
                         }
                     });
             }

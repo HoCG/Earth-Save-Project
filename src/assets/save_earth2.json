@@ -3,7 +3,7 @@
         {
             "id": 0,
             "icon": ["mdi-chart-bubble"],
-            "title": "오늘 내가 사용한 샴푸의 양은?",
+            "title": "한번 샤워할때 샴푸를 몇번 짜서 사용하니?",
             "count": 0
         }, {
             "id": 1,

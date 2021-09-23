@@ -11,10 +11,7 @@
                             <v-toolbar-title>오늘 너가 지구를 얼마나 지켰는지 확인해봐!</v-toolbar-title>
                         </v-layout>
                     </v-toolbar>
-                    <v-list
-                        v-for="(item, index) in items"
-                        :key="item.title"
-                        >
+                    <v-list v-for="(item, index) in items" :key="item.title">
                         <v-list-item>
                             <v-list-item-icon v-for="icons in item.icon" :key="icons">
                                 <v-icon v-text="icons" size="30px"></v-icon>
@@ -45,7 +42,7 @@
 <script>
     import JsonData from "../assets/save_earth.json"
     export default {
-        data: () => ({items: JsonData.items, inputText: []}),
+        data: () => ({Counter: 0, items: JsonData.items, inputText: []}),
         methods: {
             subCount(count) {
                 if (count > 0) {
@@ -59,16 +56,25 @@
                 ++count;
                 return count;
             },
+            CalculateData() {
+                let bottleCount = this.items.find(item => item.title.includes('플라스틱 병')).count * 2;
+                let meatCount = this.items.find(item => item.title.includes('고기')).count * 2;
+                let strawCount = this.items.find(item => item.title.includes('빨대')).count;
+                let deliveryCount = this.items.find(item => item.title.includes('배달')).count * 5;
+                let airConditionerCount = this.items.find(item => item.title.includes('에어컨')).count * 2;
+                this.Counter += (bottleCount + meatCount + strawCount + deliveryCount + airConditionerCount);
+            },
             pushData() {
+                this.CalculateData();
                 this
-                .$router
-                .push({
-                    path: "/plastic_consume2",
-                    query: {
-                        name: "첫번째 페이지 결과",
-                        items: this.items.map(element => element.count)
-                    }
-                });
+                    .$router
+                    .push({
+                        path: "/plastic_consume2",
+                        query: {
+                            name: "첫번째 페이지 결과",
+                            items: this.Counter
+                        }
+                    });
             }
         }
     }

@@ -48,11 +48,9 @@
 <script>
     import JsonData from "../assets/save_earth2.json"
     export default {
-        data: () => ({Counter: [], items: JsonData.items, inputText: []}),
+        data: () => ({Counter: 0, items: JsonData.items, inputText: []}),
         created() {
-            for(let Data of this.$route.query.items){
-                this.Counter.push(parseInt(Data));
-            }
+            this.Counter += parseInt(this.$route.query.items);
             console.log(this.Counter);
         },
         methods: {
@@ -68,10 +66,16 @@
                 ++count;
                 return count;
             },
+            CalculateData() {
+                let shampooCount = this.items.find(item => item.title.includes('샴푸')).count;
+                let publictransportCount = this.items.find(item => item.title.includes('대중교통')).count * -3;
+                let plasticCount = this.items.find(item => item.title.includes('비닐봉투')).count * 3;
+                let cupCount = this.items.find(item => item.title.includes('컵')).count;
+                let bowlCount = this.items.find(item => item.title.includes('용기')).count * 2;
+                this.Counter += (shampooCount + publictransportCount + plasticCount + cupCount + bowlCount);
+            },
             pushData() {
-                for(let Data of this.items){
-                    this.Counter.push(parseInt(Data.count));
-                }
+                this.CalculateData();
                 console.log(this.Counter);
                 this
                 .$router
@@ -79,7 +83,7 @@
                     path: "/result",
                     query: {
                         name: "두번째 페이지 결과",
-                        items: this.Counter
+                        items: this.Counter //배열을 넘기는것도 가능하다는 점 참고!
                     }
                 });
             }

@@ -1,4 +1,6 @@
 # earth_save_project
+요즘 늘어난 환경에 대한 관심으로인해 만들게 된 프로젝트입니다. 
+
 
 ## Project setup
 ```

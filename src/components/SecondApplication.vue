@@ -43,7 +43,7 @@
 <script>
     import JsonData from "../assets/save_earth.json"
     export default {
-        data: () => ({Counter: 0, items: JsonData.items, inputText: []}),
+        data: () => ({lackItems: [], Counter: 0, items: JsonData.items, inputText: []}),
         methods: {
             subCount(count) {
                 if (count > 0) {
@@ -65,6 +65,23 @@
                 let airConditionerCount = this.items.find(item => item.title.includes('에어컨')).count * 2;
                 this.Counter += (bottleCount + meatCount + strawCount + deliveryCount + airConditionerCount);
             },
+            PutLackItems(){
+                if(this.items.find(item => item.title.includes('플라스틱 병')).count > 5){
+                    this.lackItems.push("플라스틱 병");
+                }
+                if(this.items.find(item => item.title.includes('고기')).count >= 3){
+                    this.lackItems.push("고기");
+                }
+                if(this.items.find(item => item.title.includes('빨대')).count >= 2){
+                    this.lackItems.push("빨대");
+                }
+                if(this.items.find(item => item.title.includes('배달')).count >= 1){
+                    this.lackItems.push("배달");
+                }
+                if(this.items.find(item => item.title.includes('에어컨')).count >= 5){
+                    this.lackItems.push("에어컨");
+                }
+            },
             checkForAirConditioner(title){
                 if(title.includes("에어컨")){
                     return true;
@@ -75,6 +92,7 @@
             },
             pushData() {
                 this.CalculateData();
+                this.PutLackItems();
                 this
                     .$router
                     .push({
@@ -82,7 +100,7 @@
                         query: {
                             name: "첫번째 페이지 결과",
                             items: this.Counter,
-                            lackItems: ""
+                            lackItems: this.lackItems
                         }
                     });
             }

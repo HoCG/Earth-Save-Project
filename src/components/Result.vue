@@ -28,6 +28,7 @@
                         <v-list-item-title v-else-if="FinalCalculater() === 5" class="text">
                             너무 심각한 환경파괴범!!! 노력하세요!
                         </v-list-item-title>
+                        {{this.$route.query.lackItems}}
                     </v-list>
                 </v-card>
             </v-card-actions>

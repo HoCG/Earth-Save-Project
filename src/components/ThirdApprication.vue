@@ -48,10 +48,14 @@
 <script>
     import JsonData from "../assets/save_earth2.json"
     export default {
-        data: () => ({Counter: 0, items: JsonData.items, inputText: []}),
+        data: () => ({lackItems: [], Counter: 0, items: JsonData.items, inputText: []}),
         created() {
             this.Counter += parseInt(this.$route.query.items);
+            for(let lackItem of this.$route.query.lackItems){
+                this.lackItems.push(String(lackItem));
+            }
             console.log(this.Counter);
+            console.log(this.lackItems);
         },
         methods: {
             subCount(count) {
@@ -74,8 +78,26 @@
                 let bowlCount = this.items.find(item => item.title.includes('용기')).count * 2;
                 this.Counter += (shampooCount + publictransportCount + plasticCount + cupCount + bowlCount);
             },
+            PutLackItems() {
+                if(this.items.find(item => item.title.includes('샴푸')).count >= 3){
+                    this.lackItems.push("샴푸");
+                }
+                if(this.items.find(item => item.title.includes('대중교통')).count === 0){
+                    this.lackItems.push("대중교통");
+                }
+                if(this.items.find(item => item.title.includes('비닐봉투')).count >= 4){
+                    this.lackItems.push("비닐봉투");
+                }
+                if(this.items.find(item => item.title.includes('컵')).count >= 2){
+                    this.lackItems.push("컵");
+                }
+                if(this.items.find(item => item.title.includes('용기')).count >= 3){
+                    this.lackItems.push("용기");
+                }
+            },
             pushData() {
                 this.CalculateData();
+                this.PutLackItems();
                 console.log(this.Counter);
                 this
                 .$router
@@ -83,7 +105,8 @@
                     path: "/result",
                     query: {
                         name: "두번째 페이지 결과",
-                        items: this.Counter //배열을 넘기는것도 가능하다는 점 참고!
+                        items: this.Counter, //배열을 넘기는것도 가능하다는 점 참고!
+                        lackItems: this.lackItems
                     }
                 });
             }

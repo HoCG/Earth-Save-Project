@@ -70,6 +70,7 @@
                 ++count;
                 return count;
             },
+            //이용수치를 값으로 바꿔주는 함수. 추후 쿼리를 이용해서 Result.vue에 넘겨준다.
             CalculateData() {
                 let shampooCount = this.items.find(item => item.title.includes('샴푸')).count;
                 let publictransportCount = this.items.find(item => item.title.includes('대중교통')).count * -3;
@@ -78,6 +79,7 @@
                 let bowlCount = this.items.find(item => item.title.includes('용기')).count * 2;
                 this.Counter += (shampooCount + publictransportCount + plasticCount + cupCount + bowlCount);
             },
+            //초과이용되었다고 판단되는 값들을 검출해서 배열로 넘기기 위한 함수
             PutLackItems() {
                 if(this.items.find(item => item.title.includes('샴푸')).count >= 3){
                     this.lackItems.push("샴푸");

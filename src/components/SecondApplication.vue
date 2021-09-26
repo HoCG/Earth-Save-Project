@@ -81,6 +81,8 @@
                 if(this.items.find(item => item.title.includes('에어컨')).count >= 5){
                     this.lackItems.push("에어컨");
                 }
+                this.lackItems.push("초기값"); //아무값도 없는 상태에서 대중교통의 값이 "대","중","교","통"으로 나뉘어서 보이는
+                //오류 수정을 위한 배열 초기값
             },
             checkForAirConditioner(title){
                 if(title.includes("에어컨")){
